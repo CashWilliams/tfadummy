@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains tfadummy.module
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\tfaDummy\TfaDummy;
+
+/**
+ * Implements hook_help().
+ */
+
+function tfadummy_help($route_name, RouteMatchInterface $route_match)
+{
+  switch ($route_name) {
+    // Main module help for the tfadummy module.
+    case 'help.page.tfadummy':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Dummy TFA Authentication') . '</p>';
+      return $output;
+    break;
+  }
+}
+
+/**
+ * Implements hook_tfa_api().
+ *
+ * A Dummy plugin for testing.
+ */
+function tfadummy_tfa_api() {
+  return array(
+    'tfa_dummy' => array(
+      'class' => 'TfaDummy',
+      'name' => 'Tfa Dummy',
+    ),
+  );
+}
